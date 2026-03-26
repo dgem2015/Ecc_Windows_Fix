@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  fileserver:
+    build: .
+    image: windowsfix-fileserver
+    container_name: windowsfix-fileserver
+    restart: unless-stopped
+    ports:
+      - "80:80"       # HTTP  — change to "8080:80" if port 80 is taken
+      # - "443:443"   # Uncomment if you add SSL (see README)
+    volumes:
+      # Optional: mount a host folder so you can add/remove files
+      # without rebuilding the image. Comment out if you prefer
+      # files baked into the image.
+      - ./files:/usr/share/nginx/html/files:ro
